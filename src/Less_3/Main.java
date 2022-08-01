@@ -14,6 +14,7 @@ public class Main {
         book.add("lox2","100","5@");
 
         System.out.println(book.getPerson("lox2"));
+        System.out.println(book.getPerson("lox"));
 
     }
 
@@ -21,15 +22,13 @@ public class Main {
 
     public static void SumString(String[] arr) {
         Map<String, Integer> mapa = new HashMap<>();
-        for (int i = 0; i < arr.length; i++) {
-            if (mapa.containsKey(arr[i])) {
-                int a = mapa.get(arr[i]);
-                mapa.put(arr[i], a+1);
-
+        for (String s : arr) {
+            if (mapa.containsKey(s)) {
+                int a = mapa.get(s);
+                mapa.put(s, a + 1);
             } else {
-                mapa.put(arr[i], 1);
+                mapa.put(s, 1);
             }
-
         }
         System.out.println(mapa);
         System.out.println(mapa.keySet());

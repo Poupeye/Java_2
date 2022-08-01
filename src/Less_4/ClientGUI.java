@@ -28,7 +28,7 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
     private final JButton btnSend = new JButton("Send");
 
     private final JList<String> userList = new JList<>();
-    private  boolean shownIoErrors = false;
+    private boolean shownIoErrors = false;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -92,15 +92,15 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
         if ("".equals(msg)) return;
         tfMessage.setText(null);
         tfMessage.requestFocusInWindow();
-        putLog(String.format("%s:%s , username,msg"));
+        putLog(String.format("%s:%s", username, msg));
         wrtMsgToLogFile(msg, username);
     }
 
     private void wrtMsgToLogFile(String msg, String username) {
-        try (FileWriter out = new FileWriter("log.txt,true")) {
+        try (FileWriter out = new FileWriter("log.txt,true",true)) {
             out.write(username + ": " + msg + "\n");
             out.flush();
-        }catch (IOException e) {
+        } catch (IOException e) {
             if (!shownIoErrors) {
                 shownIoErrors = true;
                 showException(e);
