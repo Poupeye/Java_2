@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Date;
 
 public class ClientGUI extends JFrame implements ActionListener, Thread.UncaughtExceptionHandler {
 
@@ -97,8 +98,9 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
     }
 
     private void wrtMsgToLogFile(String msg, String username) {
-        try (FileWriter out = new FileWriter("log.txt,true",true)) {
-            out.write(username + ": " + msg + "\n");
+        try (FileWriter out = new FileWriter("log.txt",true)) {
+            Date hour = new Date();
+            out.write(hour + username + ": " + msg + "\n");
             out.flush();
         } catch (IOException e) {
             if (!shownIoErrors) {
