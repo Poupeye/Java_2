@@ -100,7 +100,7 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
     private void wrtMsgToLogFile(String msg, String username) {
         try (FileWriter out = new FileWriter("log.txt",true)) {
             Date hour = new Date();
-            out.write(hour + username + ": " + msg + "\n");
+            out.write(hour + " " +  username + ": " + msg + "\n");
             out.flush();
         } catch (IOException e) {
             if (!shownIoErrors) {
