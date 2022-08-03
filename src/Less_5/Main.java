@@ -3,9 +3,10 @@ import java.util.Arrays;
 
 public class Main extends Thread {
 
-    static final int size = 10000000;
-    static final int h = size / 2;
+    static final int SIZE = 10000000;
+    static final int H = SIZE / 2;
     static long a = System.currentTimeMillis();
+    static float[] arr = new float[SIZE];
 
     public static void main(String[] args) {
         Runnable arrMethod1 = new Runnable() {
@@ -21,18 +22,17 @@ public class Main extends Thread {
                 ArrayDouble();
             }
         };
-        Thread thread1 = new Thread(arrMethod1);
-        thread1.start();
-        Thread thread2 = new Thread(arrMethod2);
-        thread2.start();;
+
+        thread(arrMethod1);
+        thread(arrMethod2);
+
     }
 
 
     public static void Array() {
-        float[] arr = new float[size];
         Arrays.fill(arr, 1);
 
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < SIZE; i++) {
             arr[i] = (float) (arr[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5)
                     * Math.cos(0.4f + i / 2));
         }
@@ -40,17 +40,16 @@ public class Main extends Thread {
     }
 
     public static void ArrayDouble() {
-        float[] arr = new float[size];
         Arrays.fill(arr, 1);
-        float[] a1 = new float[h];
-        float[] a2 = new float[h];
-        System.arraycopy(arr, 0, a1, 0, h);
-        System.arraycopy(arr, h, a2, 0, h);
+        float[] firstHalf = new float[H];
+        float[] secondHalf = new float[H];
+        System.arraycopy(arr, 0, firstHalf, 0, H);
+        System.arraycopy(arr, H, secondHalf, 0, H);
         Runnable r = new Runnable() {
             @Override
             public void run() {
-                for (int i = 0; i < h; i++) {
-                    a1[i] = (float) (a1[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5)
+                for (int i = 0; i < H; i++) {
+                    firstHalf[i] = (float) (firstHalf[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5)
                             * Math.cos(0.4f + i / 2));
                 }
             }
@@ -59,18 +58,23 @@ public class Main extends Thread {
         Runnable r2 = new Runnable() {
             @Override
             public void run() {
-                for (int i = 0; i < h; i++) {
-                    a2[i] = (float) (a2[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5)
+                for (int i = 0; i < H; i++) {
+                    secondHalf[i] = (float) (secondHalf[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5)
                             * Math.cos(0.4f + i / 2));
                 }
             }
         };
-        Thread t1 = new Thread(r);
-        t1.start();
-        Thread t2 = new Thread(r2);
-        t2.start();
-        System.arraycopy(a1, 0, arr, 0, h);
-        System.arraycopy(a2, 0, arr, h, h);
+
+        thread(r);
+        thread(r2);
+
+        System.arraycopy(firstHalf, 0, arr, 0, H);
+        System.arraycopy(secondHalf, 0, arr, H, H);
         System.out.println(System.currentTimeMillis() - a);
+    }
+
+    public static void thread (Runnable r) {
+       Thread threadNew = new Thread(r);
+       threadNew.start();
     }
 }

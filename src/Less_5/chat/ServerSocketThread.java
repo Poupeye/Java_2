@@ -2,10 +2,10 @@ package Less_5.chat;
 
 public class ServerSocketThread extends Thread {
 
-    private final int port;
-    ServerSocketThread(String name, int port) {
+    private final int PORT;
+    public ServerSocketThread(String name, int port) {
         super(name);
-        this.port = port;
+        this.PORT = port;
         start();
     }
 
