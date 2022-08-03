@@ -30,10 +30,7 @@ public class Main extends Thread {
     public static void Array() {
         Arrays.fill(arr, 1);
 
-        for (int i = 0; i < SIZE; i++) {
-            arr[i] = (float) (arr[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5)
-                    * Math.cos(0.4f + i / 2));
-        }
+        MathArray(arr);
         System.out.println(System.currentTimeMillis() - a);
     }
 
@@ -46,20 +43,14 @@ public class Main extends Thread {
         Runnable r = new Runnable() {
             @Override
             public void run() {
-                for (int i = 0; i < H; i++) {
-                    firstHalf[i] = (float) (firstHalf[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5)
-                            * Math.cos(0.4f + i / 2));
-                }
+                MathArray(firstHalf);
             }
         };
 
         Runnable r2 = new Runnable() {
             @Override
             public void run() {
-                for (int i = 0; i < H; i++) {
-                    secondHalf[i] = (float) (secondHalf[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5)
-                            * Math.cos(0.4f + i / 2));
-                }
+                MathArray(secondHalf);
             }
         };
         thread(r);
@@ -73,5 +64,12 @@ public class Main extends Thread {
     public static void thread (Runnable r) {
        Thread threadNew = new Thread(r);
        threadNew.start();
+    }
+
+    public  static void MathArray (float[] array) {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = (float) (array[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5)
+                    * Math.cos(0.4f + i / 2));
+        }
     }
 }
