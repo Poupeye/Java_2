@@ -1,5 +1,4 @@
 package Less_5;
-
 import java.util.Arrays;
 
 public class Main extends Thread {
@@ -15,6 +14,7 @@ public class Main extends Thread {
                 Array();
             }
         };
+
         Runnable arrMethod2 = new Runnable() {
             @Override
             public void run() {
@@ -31,6 +31,7 @@ public class Main extends Thread {
     public static void Array() {
         float[] arr = new float[size];
         Arrays.fill(arr, 1);
+
         for (int i = 0; i < size; i++) {
             arr[i] = (float) (arr[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5)
                     * Math.cos(0.4f + i / 2));
@@ -67,13 +68,9 @@ public class Main extends Thread {
         Thread t1 = new Thread(r);
         t1.start();
         Thread t2 = new Thread(r2);
-        t2.start();;
-
+        t2.start();
         System.arraycopy(a1, 0, arr, 0, h);
         System.arraycopy(a2, 0, arr, h, h);
-
         System.out.println(System.currentTimeMillis() - a);
-
-
     }
 }
