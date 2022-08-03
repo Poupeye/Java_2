@@ -1,4 +1,4 @@
-package Less_4;
+package Less_5.chat;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,6 +34,7 @@ public class ServerGUI extends JFrame implements ActionListener, Thread.Uncaught
         setAlwaysOnTop(true);
         setLayout(new GridLayout(1, 2));
         btnStart.addActionListener(this);
+        btnStop.addActionListener(this);
 
         add(btnStart);
         add(btnStop);
