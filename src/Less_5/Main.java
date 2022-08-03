@@ -22,12 +22,10 @@ public class Main extends Thread {
                 ArrayDouble();
             }
         };
-
         thread(arrMethod1);
         thread(arrMethod2);
 
     }
-
 
     public static void Array() {
         Arrays.fill(arr, 1);
@@ -64,7 +62,6 @@ public class Main extends Thread {
                 }
             }
         };
-
         thread(r);
         thread(r2);
 
