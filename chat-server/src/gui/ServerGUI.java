@@ -63,7 +63,7 @@ public class ServerGUI extends JFrame implements ActionListener, Thread.Uncaught
         } else if (src == btnStop) {
             server.stop();
         } else if (src == btnDrop){
-
+            server.dropAllClients();
         }else {
             throw new RuntimeException("Unknown source: " + src);
         }
