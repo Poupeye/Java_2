@@ -39,8 +39,6 @@ public class SocketThread extends Thread {
                 listener.onSocketTreadException(this,e);
             }
         }
-
-
     }
 
     public synchronized boolean sendMessage (String msg) {
@@ -49,7 +47,7 @@ public class SocketThread extends Thread {
             return true;
         } catch (IOException e) {
             listener.onSocketTreadException(this, e);
-            close();
+//            close();
             return false;
         }
     }
